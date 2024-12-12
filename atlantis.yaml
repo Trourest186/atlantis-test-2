@@ -1,0 +1,26 @@
+version: 3
+projects:
+  - name: poc
+    dir: prod/roles
+    autplan:
+      enabled: true
+      when_modified: ["*.tf", "*.tfvars"]
+    apply_requirements: [mergeable, approved, undiverged]
+    import_requirements: [mergeable, approved, undiverged]
+    workflow: poc
+    
+workflows:
+  poc:
+    plan:
+      steps:
+        - env:
+            name: GOOGLE_APPLICATION_CREDENTIALS
+            value: '/gcp-infra-atlantis/token.json'
+        - init
+        - plan:
+    apply:
+      steps:
+        - env:
+            name: GOOGLE_APPLICATION_CREDENTIALS
+            value: '/gcp-infra-atlantis/token.json'
+        - apply
