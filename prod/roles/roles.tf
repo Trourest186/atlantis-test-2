@@ -12,8 +12,7 @@ module "prod_admin_custom_role" {
   description = "The custom role for admin groups in production"
   title       = "tiliter_prod_admin_custom_role"
   predefined_roles = [
-    "roles/compute.instanceAdmin",
-    "roles/pubsub.publisher"
+    "roles/compute.instanceAdmin"
   ]
   excluded_permissions = [
     "resourcemanager.projects.get",
